@@ -9,25 +9,25 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building the check-out project";
-                sh '${gitpath}/Build.sh'
+                sh '/var/jenkins_home/workspace/Scripted_pipeline_github/Build.sh'
             }            
         }
         stage('Unit-Test') {
             steps {
                 echo "Performing Junit Test...";
-                sh '${gitpath}/Unit.sh'
+                sh '/var/jenkins_home/workspace/Scripted_pipeline_github/Unit.sh'
             }            
         }
         stage('Quality-Gate') {
             steps {
                 echo "Varifying the Quality Gate";
-                sh '${gitpath}/Quality.sh'
+                sh '/var/jenkins_home/workspace/Scripted_pipeline_github/Quality.sh'
             }            
         }
         stage('Deploy') {
             steps {
                 echo "Deploying to Stage";
-                sh '${gitpath}/Deploy.sh'
+                sh '/var/jenkins_home/workspace/Scripted_pipeline_github/Deploy.sh'
             }            
         }
     }
