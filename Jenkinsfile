@@ -19,6 +19,12 @@ pipeline {
                 sh '/var/jenkins_home/workspace/Scripted_pipeline_github/Unit.sh'
             }            
         }
+	stage('Merge') {
+            steps {
+                echo "Performing Merge of code...";
+                sh '/var/jenkins_home/workspace/Scripted_pipeline_github/Merge.sh'
+            }            
+        }
         stage('Quality-Gate') {
             steps {
                 echo "Varifying the Quality Gate";

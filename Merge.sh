@@ -1,0 +1,1 @@
+echo "The code is merged";
