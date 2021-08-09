@@ -4,7 +4,6 @@ pipeline {
         stage('Git-CheckOut') {
             steps {
                 echo "Checking Out from Git repo";
-                git 'https://github.com/abdulhusainahk/Pipeline_Script.git'
             }            
         }
         stage('Build') {
