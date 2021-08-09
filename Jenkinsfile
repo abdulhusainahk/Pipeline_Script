@@ -4,7 +4,7 @@ pipeline {
         stage('Git-CheckOut') {
             steps {
                 echo "Checking Out from Git repo";
-                sh 'chmod +x /var/jenkins_home/workspace/Scripted_pipeline_github'
+                sh 'chmod -R +x /var/jenkins_home/workspace/Scripted_pipeline_github'
             }            
         }
         stage('Build') {
