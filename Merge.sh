@@ -1,1 +1,1 @@
-echo "The code is merged";
+echo "The code is merged for integration";
