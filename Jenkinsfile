@@ -21,7 +21,7 @@ pipeline {
         }
 	stage('Merge') {
             steps {
-                echo "Performing Merge of code ++++++...";
+                echo "Performing Merge of code...";
                 sh '/var/jenkins_home/workspace/Scripted_pipeline_github/Merge.sh'
             }            
         }
