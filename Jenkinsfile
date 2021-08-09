@@ -1,37 +1,52 @@
 pipeline {
-    agent none
+    agent any
     stages {
-	
-	stage('Non-Parallel Stage') {
-	    agent {
-                        label "master"
-                }
-        steps {
-                echo 'This stage will be executed first'
-                }
+        stage('Git-CheckOut') {
+            steps {
+                echo "Checking Out from Git repo";
+                git 'https://github.com/abdulhusainahk/Pipeline_Script.git'
+            }            
         }
-
-	
-        stage('Run Tests') {
-            parallel {
-                stage('Test On Windows') {
-                    agent {
-                        label "Windows_Node"
-                    }
-                    steps {
-                        echo "Task1 on Agent"
-                    }
-                    
-                }
-                stage('Test On Master') {
-                    agent {
-                        label "master"
-                    }
-                    steps {
-						echo "Task1 on Master"
-					}
-                }
-            }
+        stage('Build') {
+            steps {
+                echo "Building the check-out project";
+                sh 'Build.sh'
+            }            
+        }
+        stage('Unit-Test') {
+            steps {
+                echo "Performing Junit Test...";
+                sh 'Unit.sh'
+            }            
+        }
+        stage('Quality-Gate') {
+            steps {
+                echo "Varifying the Quality Gate";
+                sh 'Quality.sh'
+            }            
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploying to Stage";
+                sh 'Deploy.sh'
+            }            
         }
     }
+    post {
+        always {
+            echo "This will urn always";
+        }
+        success {
+            echo "this runs at success";
+        }
+        failure {
+            echo "this run when job fails";
+        }
+        unstable {
+            echo "This runs olny when the run is marked unstable ";
+        }
+        changed {
+            echo "This run when there is change in the state from success to failure or visa versa";
+        }
+    }    
 }
